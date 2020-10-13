@@ -1,0 +1,7 @@
+.header-bg{
+    background: url(../../../images/logos/BgLogo.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow:hidden;
+    height: 684px;
+}
