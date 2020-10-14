@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from '../../../images/logos/logo.png';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
 const MakeAdmin = () => {
+    const { register, handleSubmit, watch, errors } = useForm();
+    const onSubmit = data => console.log(data);
     return (
         <div className="container-fluid">
                 <div className="row">
@@ -31,8 +34,14 @@ const MakeAdmin = () => {
                                 <h6>Pro Rasel</h6>
                             </div>
                         </div>
-                        <div className="contact-area">
-                            
+                        <div className="contact-area p-5">
+                            <form className="admin-service" action="">
+                            <label style={{fontWeight: '500'}}>Email</label>
+                                    <div className=" d-flex">
+                                    <input type="email" name="email" style={{ width: '480px', padding: '20px 10px' }} placeholder='jon@gmail.com' className='form-control' ref={register({ required: true })} />
+                                    <input type="submit" className="admin-make-submit-btn"/>
+                                    </div>
+                            </form>
                         </div>
                     </div>
                 </div>

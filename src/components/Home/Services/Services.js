@@ -1,19 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Services = ({service}) => {
-    const {title, description, icon} = service;
-    const iconStyle={
+const Services = ({ service }) => {
+    const { title, description } = service;
+    const iconStyle = {
         height: '74px',
         width: '74px'
     }
     return (
-       
+
         <div className="col-md-4">
-            <div className="text-center provide-service-box m-2 p-5">
-                <img style={iconStyle} src={icon} alt=""/>
-                <h5>{title}</h5>
-                <p>{description}</p>
-            </div>
+            <Link style={{textDecoration: 'none'}} to="/order">
+                <div className="text-center provide-service-box m-2 p-5">
+                    <img style={iconStyle} src={`data:image/png;base64,${service.image.img}`} />
+                    <h5>{title}</h5>
+                    <p>{description}</p>
+                </div>
+            </Link>
         </div>
     );
 };

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Order.css';
 import logo from '../../../images/logos/logo.png';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { UserContext } from '../../../App';
 
 const Order = () => {
+    const { register, handleSubmit, watch, errors } = useForm();
+    const onSubmit = data => console.log(data);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  console.log(watch("example"));
+
     return (
         <div className="container-fluid">
                 <div className="row">
@@ -20,6 +28,9 @@ const Order = () => {
                                 <li>
                                     <Link className="list-item" to="/review">Review</Link>
                                 </li>
+                                <li>
+                                    <Link className="list-item" to="customerList">AdminPanel</Link>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -29,18 +40,18 @@ const Order = () => {
                                 <h5>Order</h5>
                             </div>
                             <div className="right">
-                                <h6>Pro Rasel</h6>
+                                <h6>{loggedInUser.name}</h6>
                             </div>
                         </div>
                         <div className="contact-area">
-                            <form action="" className="form-area">
-                                <input className="text-control mb-3" type="text" name="" id="" placeholder="Your name/ Company's name"/><br/>
-                                <input className="text-control mb-3" type="email" name="email" id="" placeholder="Your email address"/><br/>
-                                <input className="text-control mb-3" type="text" name="" id="" placeholder="Graphic Design"/><br/>
-                                <textarea className="details-area mb-3" name="" id="" cols="30" rows="10" placeholder="Project Details"></textarea><br/>
-                                <input className="price" type="text" name="" id="" placeholder="Price"/>
+                            <form onSubmit={handleSubmit(onSubmit)} className="form-area">
+                                <input className="text-control mb-3" type="text" name="" id="" placeholder="Your name/ Company's name" ref={register({ required: true })}/><br/>
+                                <input className="text-control mb-3" type="email" name="email" id="" placeholder="Your email address" ref={register({ required: true })}/><br/>
+                                <input className="text-control mb-3" type="text" name="" id="" placeholder="Graphic Design" ref={register({ required: true })}/><br/>
+                                <textarea className="details-area mb-3" name="" id="" cols="30" rows="10" placeholder="Project Details" ref={register({ required: true })}></textarea><br/>
+                                <input className="price" type="text" name="" id="" placeholder="Price" ref={register({ required: true })}/>
                                 <label style={{width:'271px', backgroundColor: "#DEFFED", color: "#009444", border: "1px solid #009444", borderRadius: '5px' }} class="custom-file-upload ml-3 p-2 text-center">
-                                    <input style={{ display: "none" }} type="file" /> upload project file 
+                                    <input style={{ display: "none" }} type="file" ref={register({ required: true })}/> upload project file 
                                 </label><br/>
                                 <input className="order-btn mt-4" type="submit" value='send' />
                             </form>

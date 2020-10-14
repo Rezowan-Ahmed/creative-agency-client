@@ -15,6 +15,7 @@ import AddService from './components/AdminPanel/AddService/AddService';
 import CustomerList from './components/AdminPanel/CustomerList/CustomerList';
 import MakeAdmin from './components/AdminPanel/MakeAdmin/MakeAdmin';
 import NoMatch from './components/NoMatch/NoMatch';
+import PrivateRoute from './components/Login/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
@@ -37,9 +38,9 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/order">
+          <PrivateRoute path="/order">
             <Order></Order>
-          </Route>
+          </PrivateRoute>
           <Route path="/review">
             <Review></Review>
           </Route>
