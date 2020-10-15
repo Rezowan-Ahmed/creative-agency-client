@@ -1,16 +1,17 @@
 import React from 'react';
+import service4 from '../../../images/icons/service4.png';
 
-const CustomerServiceList = ({service}) => {
-    const {img, status, title, description} = service;
+const CustomerServiceList = ({order}) => {
+    const {title, description} = order;
     return (
         <div className='col-md-6'>
             <div className="service-box">
                 <div className="d-flex justify-content-between">
                     <div>
-                        <img style={{width:'80px'}} src={img} alt="icon"/>
+                        <img style={{width:'80px'}} src={service4} alt="icon"/>
                     </div>
                     <div>
-                        <button className="mt-1 btn-status">{status}</button>
+                        <button className="mt-1 btn-status">Done</button>
                     </div>
                 </div>
                 <div className='mt-3 pb-3'>

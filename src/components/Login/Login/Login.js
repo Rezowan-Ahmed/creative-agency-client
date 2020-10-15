@@ -23,7 +23,6 @@ const Login = () => {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleProvider)
             .then(function (result) {
-                console.log(result);
             const { displayName, email } = result.user;
             const googleSignInUser = { name: displayName, email: email };
             setLoggedInUser(googleSignInUser);
@@ -36,7 +35,7 @@ const Login = () => {
     }
     return (
         <div>
-            <img style={{ width: '202px', height: "60px", margin: "44px 662px 44px 575px" }} src={logo} alt="logo" />
+            <Link to="home"><img style={{ width: '202px', height: "60px", margin: "44px 662px 44px 575px" }} src={logo} alt="logo" /></Link> 
             <div className="login_form">
                 <h4 className="text-center mt-5 mb-5">Login With</h4>
                 <div className="d-flex justify-content-center">

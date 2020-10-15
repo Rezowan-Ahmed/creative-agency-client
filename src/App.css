@@ -168,3 +168,9 @@
   border: none;
   margin-left: 10px;
 }
+.admin-service-list{
+  width : 900px;
+  background : #ffffff;
+  border-radius : 15px;
+  padding :20px;
+}

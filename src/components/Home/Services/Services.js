@@ -10,7 +10,7 @@ const Services = ({ service }) => {
     return (
 
         <div className="col-md-4">
-            <Link style={{textDecoration: 'none'}} to="/order">
+            <Link style={{textDecoration: 'none'}} to={`/order/${service.title}`}>
                 <div className="text-center provide-service-box m-2 p-5">
                     <img style={iconStyle} src={`data:image/png;base64,${service.image.img}`} />
                     <h5>{title}</h5>

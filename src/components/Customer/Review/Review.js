@@ -1,38 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../../images/logos/logo.png';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { UserContext } from '../../../App';
 
 const Review = () => {
-    const [review, setReview] = useState({})
-    const history = useHistory()
+    const { register, handleSubmit } = useForm();
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
-    const handleSubmit = e => {
+   const onSubmit = data => {
+       const customerFeedback = {...data}
         fetch('http://localhost:9000/feedback', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify(review)
+            body: JSON.stringify(customerFeedback)
         })
         .then(res => res.json())
-        .then(data => {
-            if(data){
-                alert('Submit Successfully')
-                history.pushState('/')
-            }
+        .then(result => {
+            alert('Order successfully done')
         })
-        .catch(error => {
-            alert('Failed! Try again later')
-        })
-        e.preventDefault();
     }
 
-
-    const handleBlur = (e) => {
-        const reviews = {...review}
-        reviews[e.target.name] = e.target.value
-        setReview(reviews)
-    }
 
     return (
         <div className="container-fluid">
@@ -56,18 +46,18 @@ const Review = () => {
                     <div className="col-md-9">
                         <div className="header">
                             <div className="left">
-                                <h5>Order</h5>
+                                <h5>Review</h5>
                             </div>
                             <div className="right">
-                                <h6>Pro Rasel</h6>
+                                <h6>{loggedInUser.name}</h6>
                             </div>
                         </div>
                         <div className="contact-area">
-                            <form onSubmit={handleSubmit} className="form-area">
-                                <input onBlur={handleBlur} className="text-control mb-3" type="text" name="name" placeholder="Your name"/>
-                                <input onBlur={handleBlur}  className="text-control mb-3" type="text" name="position"  placeholder="Company's name.Designation"/>
-                                <textarea onBlur={handleBlur}  className="details-area mb-3" name="statement"  cols="30" rows="10" placeholder="Description"></textarea><br/>
-                                <input className="order-btn mt-1" type="submit" name="" id=""/>
+                            <form onSubmit={handleSubmit(onSubmit)} className="form-area">
+                                <input className="text-control mb-3" type="text" name="name" placeholder="Your name" ref={register({ required: true })}/>
+                                <input className="text-control mb-3" type="text" name="position"  placeholder="Company's name Designation" ref={register({ required: true })}/>
+                                <textarea className="details-area mb-3" name="statement"  cols="30" rows="10" placeholder="Description" ref={register({ required: true })}></textarea><br/>
+                                <input className="order-btn mt-1" type="submit" />
                             </form>
                         </div>
                     </div>
