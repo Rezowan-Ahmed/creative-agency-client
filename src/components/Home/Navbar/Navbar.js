@@ -34,7 +34,10 @@ const Navbar = () => {
                         <a className="nav-link mr-3" href="#">Contact Us</a>
                     </li>
                     <li className="nav-item">
-                        <Link to="/login" style={loginStyle} className="nav-link mr-5 text-white text-center">Login</Link>
+                        <Link to="/order" style={loginStyle} className="nav-link mr-3 text-white text-center">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/customerList" style={loginStyle} className="nav-link mr-2 text-white text-center">admin</Link>
                     </li>
                 </ul>
             </div>

@@ -4,8 +4,23 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 const MakeAdmin = () => {
-    const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit } = useForm();
+
+    const onSubmit = data => {
+        const allAdmins = {...data}
+        fetch('http://localhost:9000/makeAdmin', {
+              method: 'POST',
+              headers: { 
+                  'Content-Type' : 'application/json'
+              },
+              body: JSON.stringify(allAdmins)
+          })
+          .then(res => res.json())
+          .then(result => {
+              alert('admin successfully done')
+          })
+    }
+
     return (
         <div className="container-fluid">
                 <div className="row">
@@ -35,10 +50,10 @@ const MakeAdmin = () => {
                             </div>
                         </div>
                         <div className="contact-area p-5">
-                            <form className="admin-service" action="">
+                            <form onSubmit={handleSubmit(onSubmit)} className="admin-service">
                             <label style={{fontWeight: '500'}}>Email</label>
                                     <div className=" d-flex">
-                                    <input type="email" name="email" style={{ width: '480px', padding: '20px 10px' }} placeholder='jon@gmail.com' className='form-control' ref={register({ required: true })} />
+                                    <input type="email" name="email" style={{ width: '480px', padding: '20px 10px' }} placeholder='jon@gmail.com' className='form-control' ref={register({ required: true })} ref={register({ required: true })}/>
                                     <input type="submit" className="admin-make-submit-btn"/>
                                     </div>
                             </form>

@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../../App';
 
 const PrivateRoute = ({children ,...rest}) => {
         const [loggedInUser , setLoggedInUser] = useContext(UserContext);
+        const [admin, setAdmin] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:9000/getAdmin?email=' + loggedInUser.email)
+            .then(res => res.json())
+            .then(data => setAdmin(data))
+    }, [])
     return (
             <Route
             {...rest}
             render={({ location }) =>
-            loggedInUser.email ? (
+            loggedInUser.email || admin.email ? (
                 children
                 ) : (
                 <Redirect

@@ -37,13 +37,10 @@ const Order = () => {
                                     <Link className="list-item" to="/order">Order</Link>
                                 </li>
                                 <li>
-                                    <Link className="list-item" to="service">Service List</Link>
+                                    <Link className="list-item" to="/order/service">Service List</Link>
                                 </li>
                                 <li>
                                     <Link className="list-item" to="/review">Review</Link>
-                                </li>
-                                <li>
-                                    <Link className="list-item" to="customerList">AdminPanel</Link>
                                 </li>
                             </ul>
                         </nav>

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../../images/logos/logo.png';
 import { Link } from 'react-router-dom';
 
 
 const CustomerList = () => {
+    const [allCustomer, setAllCustomer] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:9000/allOrders')
+            .then(res => res.json())
+            .then(data => setAllCustomer(data))
+    }, [])
+
+    console.log(allCustomer);
     return (
         <div className="container-fluid">
             <div className="row">
@@ -32,10 +41,10 @@ const CustomerList = () => {
                             <h6>Pro Rasel</h6>
                         </div>
                     </div>
-                    <div className="contact-area" style={{padding: '35px'}}>
+                    <div className="contact-area" style={{ padding: '35px' }}>
                         <table class="table" className="admin-service-list p-5">
-                            <thead>
-                                <tr>
+                            <thead style={{borderBottom: '1px solid gray'}}>
+                                <tr style={{height: '50px', color: 'gray'}}>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email ID</th>
                                     <th scope="col">Service</th>
@@ -44,13 +53,18 @@ const CustomerList = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                </tr>
+                                {
+                                    allCustomer.map((list) =>
+
+                                        <tr>
+                                            <td>{list.name}</td>
+                                            <td>{list.email}</td>
+                                            <td>{list.title}</td>
+                                            <td style={{width: '270px'}}>{list.description}</td>
+                                            <td className="text-primary">Done</td>
+                                        </tr>
+                                    )
+                                }
                             </tbody>
                         </table>
                     </div>
