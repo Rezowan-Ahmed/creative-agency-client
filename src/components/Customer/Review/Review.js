@@ -10,7 +10,7 @@ const Review = () => {
 
    const onSubmit = data => {
        const customerFeedback = {...data}
-        fetch('http://localhost:9000/feedback', {
+        fetch('https://stormy-river-26718.herokuapp.com/feedback', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

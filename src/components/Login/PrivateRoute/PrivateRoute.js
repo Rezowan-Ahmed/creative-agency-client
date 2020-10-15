@@ -8,7 +8,7 @@ const PrivateRoute = ({children ,...rest}) => {
         const [admin, setAdmin] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:9000/getAdmin?email=' + loggedInUser.email)
+        fetch('https://stormy-river-26718.herokuapp.com/getAdmin?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => setAdmin(data))
     }, [])

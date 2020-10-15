@@ -13,7 +13,7 @@ const Order = () => {
 
   const onSubmit = data => {
       const allOrders = {...data, ...loggedInUser, title}
-      fetch('http://localhost:9000/addOrders', {
+      fetch('https://stormy-river-26718.herokuapp.com/addOrders', {
             method: 'POST',
             headers: { 
                 'Content-Type' : 'application/json'

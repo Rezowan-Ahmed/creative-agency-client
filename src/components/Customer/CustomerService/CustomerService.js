@@ -12,7 +12,7 @@ const CustomerService = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch('http://localhost:9000/orderList?email=' + loggedInUser.email)
+        fetch('https://stormy-river-26718.herokuapp.com/orderList?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => setOrderList(data))
     }, [])

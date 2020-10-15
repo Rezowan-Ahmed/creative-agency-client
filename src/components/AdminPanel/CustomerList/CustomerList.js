@@ -7,7 +7,7 @@ const CustomerList = () => {
     const [allCustomer, setAllCustomer] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:9000/allOrders')
+        fetch('https://stormy-river-26718.herokuapp.com/allOrders')
             .then(res => res.json())
             .then(data => setAllCustomer(data))
     }, [])
